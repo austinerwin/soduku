@@ -5,18 +5,28 @@ public class Chair {
 	private Integer id;
 	private Integer numberOfLegs;
 	private Double price;
+	private Table table;
 	
 	public Chair() {
 
 	}
 	
-	public Chair(Integer id, Integer numberOfLegs, Double price) {
+	public Chair(Integer id, Integer numberOfLegs, Double price, Table table) {
 		super();
 		this.id = id;
 		this.numberOfLegs = numberOfLegs;
 		this.price = price;
+		this.table = table;
 	}
 	
+	public Table getTable() {
+		return table;
+	}
+
+	public void setTable(Table table) {
+		this.table = table;
+	}
+
 	public Integer getId() {
 		return id;
 	}
