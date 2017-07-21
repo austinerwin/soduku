@@ -3,10 +3,21 @@ package com.cooksys.soduku.entity;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity(name = "soduku_table")
 public class Table {
 
+	@Id
+	@GeneratedValue
 	private Integer id;
+	
 	private String name;
+	
+	@OneToMany(mappedBy = "table")
 	private Set<Chair> chairs = new HashSet<Chair>();
 	
 	public Table(String name) {

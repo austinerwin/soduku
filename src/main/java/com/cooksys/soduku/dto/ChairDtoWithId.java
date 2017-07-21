@@ -1,4 +1,4 @@
-package com.cooksys.soduku.controller;
+package com.cooksys.soduku.dto;
 
 public class ChairDtoWithId {
 

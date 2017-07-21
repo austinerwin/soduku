@@ -2,8 +2,8 @@ package com.cooksys.soduku.mapstruct;
 
 import org.mapstruct.Mapper;
 
-import com.cooksys.soduku.controller.ChairDtoWithId;
 import com.cooksys.soduku.dto.ChairDto;
+import com.cooksys.soduku.dto.ChairDtoWithId;
 import com.cooksys.soduku.entity.Chair;
 
 @Mapper(componentModel = "spring")

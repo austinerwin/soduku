@@ -1,46 +1,43 @@
 package com.cooksys.soduku.service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
 import com.cooksys.soduku.dto.TableDto;
+import com.cooksys.soduku.dto.TableDtoWithId;
 import com.cooksys.soduku.entity.Table;
+import com.cooksys.soduku.mapstruct.TableMapper;
+import com.cooksys.soduku.repository.TableRepository;
 
 @Service
 public class TableService {
-
-	private ArrayList<Table> tables = new ArrayList<>();
-	private Integer tableIdGenerator = 0;
 	
-	public Set<TableDto> getAllTables() {
-		return tables.stream().map(this::toDto).collect(Collectors.toSet());
+	private TableRepository repo;
+	private TableMapper mapper;
+
+	public TableService(TableRepository repo, TableMapper mapper) {
+		this.repo = repo;
+		this.mapper = mapper;
+	}
+	
+	public Set<TableDtoWithId> getAllTables() {
+		return repo.getAll().stream().map(mapper::toDtoWithId).collect(Collectors.toSet());
 	}
 
 	public TableDto getById(Integer id) {
-		return toDto(tables.get(id));
+		return mapper.toDto(repo.get(id));
 	}
 
 	public TableDto createTable(TableDto makeIt) {
-		Table realTable = fromDto(makeIt);
-		tables.add(realTable);
-		realTable.setId(tableIdGenerator++);
-		return makeIt;
+		Table realTable = mapper.fromDto(makeIt);
+		repo.add(realTable);
+		return mapper.toDto(realTable);
 	}
 
 	public Table get(Integer tableId) {
-		return tables.get(tableId);
-	}
-	
-	public TableDto toDto(Table convertMe) {
-		return new TableDto(convertMe.getName());
-	}
-	
-	public Table fromDto(TableDto convertMe) {
-		return new Table(convertMe.getName());
+		return repo.get(tableId);
 	}
 
 }

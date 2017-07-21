@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cooksys.soduku.dto.ChairDto;
+import com.cooksys.soduku.dto.ChairDtoWithId;
 import com.cooksys.soduku.dto.TableDto;
 import com.cooksys.soduku.service.ChairService;
 

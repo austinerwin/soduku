@@ -1,10 +1,21 @@
 package com.cooksys.soduku.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Chair {
 
+	@Id
+	@GeneratedValue
 	private Integer id;
+	
 	private Integer numberOfLegs;
 	private Double price;
+	
+	@ManyToOne
 	private Table table;
 	
 	public Chair() {

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cooksys.soduku.dto.TableDto;
-import com.cooksys.soduku.entity.Table;
+import com.cooksys.soduku.dto.TableDtoWithId;
 import com.cooksys.soduku.service.TableService;
 
 @RestController
@@ -24,7 +24,7 @@ public class TableController {
 	}
 	
 	@GetMapping
-	public Set<TableDto> getAll() {
+	public Set<TableDtoWithId> getAll() {
 		return tableService.getAllTables();
 	}
 	
