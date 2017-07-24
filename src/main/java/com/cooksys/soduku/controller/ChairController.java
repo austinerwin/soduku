@@ -4,13 +4,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cooksys.soduku.dto.ChairDto;
@@ -30,8 +30,8 @@ public class ChairController {
 	
 	//doin chair stuff
 	@GetMapping
-	public List<ChairDtoWithId> sayHelloToMyLittleChair() {
-		return chairService.getAll();
+	public List<ChairDtoWithId> sayHelloToMyLittleChair( @RequestParam(value = "numberOfLegs", required = false) Integer numberOfLegs) {
+		return chairService.getAll(numberOfLegs);
 	}
 	
 	@GetMapping("{id}")

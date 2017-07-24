@@ -5,6 +5,7 @@ public class ChairDtoWithId {
 	private Integer id;
 	private Integer numberOfLegs;
 	private Double price;
+	private Integer serialNumber;
 	public Integer getId() {
 		return id;
 	}
@@ -22,5 +23,11 @@ public class ChairDtoWithId {
 	}
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+	public Integer getSerialNumber() {
+		return serialNumber;
+	}
+	public void setSerialNumber(Integer serialNumber) {
+		this.serialNumber = serialNumber;
 	}	
 }

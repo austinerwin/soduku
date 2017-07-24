@@ -1,5 +1,6 @@
 package com.cooksys.soduku.entity;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,7 +14,9 @@ public class Chair {
 	private Integer id;
 	
 	private Integer numberOfLegs;
-	private Double price;
+
+	@Embedded
+	private ItemDetail itemDetail;
 	
 	@ManyToOne
 	private Table table;
@@ -22,11 +25,11 @@ public class Chair {
 
 	}
 	
-	public Chair(Integer id, Integer numberOfLegs, Double price, Table table) {
+	public Chair(Integer id, Integer numberOfLegs, ItemDetail itemDetail, Table table) {
 		super();
 		this.id = id;
 		this.numberOfLegs = numberOfLegs;
-		this.price = price;
+		this.itemDetail = itemDetail;
 		this.table = table;
 	}
 	
@@ -50,12 +53,15 @@ public class Chair {
 	public void setNumberOfLegs(Integer numberOfLegs) {
 		this.numberOfLegs = numberOfLegs;
 	}
-	public Double getPrice() {
-		return price;
+
+	public ItemDetail getItemDetail() {
+		return itemDetail;
 	}
-	public void setPrice(Double price) {
-		this.price = price;
+
+	public void setItemDetail(ItemDetail itemDetail) {
+		this.itemDetail = itemDetail;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

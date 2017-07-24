@@ -30,12 +30,13 @@ public class ChairService {
 		this.tableMapper = tableMapper;
 	}
 
-	public List<ChairDtoWithId> getAll() {
-		return chairRepo.getAll().stream().map(chairMapper::toDtoWithId).collect(Collectors.toList());
+	public List<ChairDtoWithId> getAll(Integer numberOfLegs) {
+		List<Chair> results = numberOfLegs == null ? chairRepo.findAll() : chairRepo.getByNumberOfLegsGreaterThan(numberOfLegs);
+		return results.stream().map(chairMapper::toDtoWithId).collect(Collectors.toList());
 	}
 
 	public ChairDto findById(Integer id) {
-		return chairMapper.toDto(chairRepo.getById(id));
+		return chairMapper.toDto(chairRepo.getOne(id));
 	}
 
 	public boolean create(ChairDto buildIt) {
@@ -45,22 +46,22 @@ public class ChairService {
 
 		Chair realChair = chairMapper.fromDto(buildIt);
 
-		chairRepo.addChair(realChair);
+		chairRepo.save(realChair);
 
 		return true;
 	}
 
 	public TableDto findTableByChairId(Integer chairId) {
-		return tableMapper.toDto(chairRepo.getById(chairId).getTable());
+		return tableMapper.toDto(chairRepo.getOne(chairId).getTable());
 	}
 
 	public void addTable(Integer chairId, Integer tableId) {
-		Chair chair = chairRepo.getById(chairId);
+		Chair chair = chairRepo.getOne(chairId);
 		Table table = tableRepo.get(tableId);
 		
 		chair.setTable(table);
 		
-		chairRepo.updateChair(chair);
+		chairRepo.save(chair);
 	}
 
 }

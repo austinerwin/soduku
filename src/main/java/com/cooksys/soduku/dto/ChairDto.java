@@ -1,11 +1,10 @@
 package com.cooksys.soduku.dto;
 
-import com.cooksys.soduku.entity.Chair;
-
 public class ChairDto {
 
 	private Integer numberOfLegs;
 	private Double price;
+	private Integer serialNumber;
 	
 	public ChairDto() {
 		// TODO Auto-generated constructor stub
@@ -28,6 +27,14 @@ public class ChairDto {
 	}
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+
+	public Integer getSerialNumber() {
+		return serialNumber;
+	}
+
+	public void setSerialNumber(Integer serialNumber) {
+		this.serialNumber = serialNumber;
 	}
 	
 }
